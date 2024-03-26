@@ -1,4 +1,6 @@
-﻿namespace chuanapp
+﻿using System.Xml.Schema;
+
+namespace chuanapp
 {
     class GiftBox
     {
@@ -9,31 +11,64 @@
     {
         static void Main(string[] args)
         {
-            GiftBox a = new GiftBox()
+            GiftBox addressA = GiftBoxMaker("A친구야 잘 지내지?", 110000);
+            GiftBox addressB = GiftBoxMaker("B친구야 잘 지내지?", 120000);
+            GiftBox addressC = GiftBoxMaker("C친구야 잘 지내지?", 130000);
+
+            GiftBox[] giftBoxes = new GiftBox[3];
+            GiftBox giftBox = giftBoxes[0];
+            giftBoxes[0] = addressA;
+            giftBoxes[1] = addressB;
+            giftBoxes[2] = addressC;
+            Console.WriteLine("giftBox Array Count : "+ giftBoxes.Length);
+
+            //List
+            List<GiftBox> giftBoxList = new List<GiftBox>();
+            giftBoxList.Add(addressA); //0
+            giftBoxList.Add(addressB); //1
+            giftBoxList.Add(addressC); //2
+
+            Console.WriteLine(giftBoxList[2].Letter);
+            Console.WriteLine("giftbox List Count : " + giftBoxList.Count);
+
+
+        }
+
+        private static GiftBox GiftBoxMaker(string letter, int money)
+        {
+            GiftBox addressA = new GiftBox()
             {
-                Letter = "잘 지내니?",
-                Money = 1000000
+                Letter = letter,
+                Money = money
             };
-            Console.WriteLine("A 송장내용");
-            Console.WriteLine(a.Letter);
-            Console.WriteLine(a.Money);
-            GiftBox 배송기사님 = a;
+            return addressA;
+        }
 
-            Console.WriteLine("배송기사님 송장내용");
-            Console.WriteLine(배송기사님.Letter);
-            Console.WriteLine(배송기사님.Money);
+        private static void AddressC()
+        {
+            GiftBox addressC = new GiftBox()
+            {
+                Letter = "C친구야 잘 지내지?",
+                Money = 130000
+            };
+        }
 
-            a.Letter = "어떻게 지내고 있어?";
-            a.Money = 1500000;
+        private static void AddressB()
+        {
+            GiftBox addressB = new GiftBox()
+            {
+                Letter = "B친구야 잘 지내니?",
+                Money = 120000
+            };
+        }
 
-            Console.WriteLine("A 변경 이후 송장내용");
-            Console.WriteLine(a.Letter);
-            Console.WriteLine(a.Money);
-
-            Console.WriteLine("배송기사님 송장내용");
-            Console.WriteLine(배송기사님.Letter);
-            Console.WriteLine(배송기사님.Money);
-
+        private static void AddressA()
+        {
+            GiftBox addressA = new GiftBox()
+            {
+                Letter = "A친구야 잘 지내지?",
+                Money = 100000
+            };
         }
     }
 }
